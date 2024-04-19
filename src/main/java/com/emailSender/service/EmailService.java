@@ -1,6 +1,7 @@
 package com.emailSender.service;
 
 import java.io.File;
+import java.io.InputStream;
 
 public interface EmailService {
     // Send email to single person 
@@ -13,5 +14,5 @@ public interface EmailService {
     void sendEmailWithHtml(String to, String subject, String htmlContent);
 
     // send email with file 
-    void sendEmailWithFile(String to, String subject, String message, File file);
+    void sendEmailWithFile(String to, String subject, String message, InputStream is);
 }
