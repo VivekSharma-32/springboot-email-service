@@ -75,13 +75,12 @@ public class EmailServiceImpl implements EmailService{
 
     @Override
     public void sendEmailWithFile(String to, String subject, String message, InputStream is) {
-        
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true); // true indicates multipart message
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(message);
+            helper.setText(message,true);
             File file = new File("src/main/resources/email/test.png");
             Files.copy(is, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
             FileSystemResource fileSystemResource = new FileSystemResource(file);
